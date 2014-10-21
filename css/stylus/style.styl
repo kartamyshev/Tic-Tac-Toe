@@ -1,0 +1,32 @@
+html
+body
+  width 100%
+  height 100%
+
+body
+  margin 0
+  background #cccccc
+  text-align center
+
+.wrapper
+  display inline-block
+  vertical-align middle
+  /*text-align left*/
+  table.field
+    td
+      border 1px solid #000
+      td-size = 100px
+      width td-size
+      height td-size
+      font 50px monospace
+      text-transform: lowercase
+      cursor: pointer
+      &.disabled
+        cursor: default
+        background: #888888
+
+.helper
+  display inline-block
+  vertical-align middle
+  height 100%
+  width 0

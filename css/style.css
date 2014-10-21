@@ -1,0 +1,33 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+body {
+  margin: 0;
+  background: #ccc;
+  text-align: center;
+}
+.wrapper {
+  display: inline-block;
+  vertical-align: middle;
+/*text-align left*/
+}
+.wrapper table.field td {
+  border: 1px solid #000;
+  width: 100px;
+  height: 100px;
+  font: 50px monospace;
+  text-transform: lowercase;
+  cursor: pointer;
+}
+.wrapper table.field td.disabled {
+  cursor: default;
+  background: #888;
+}
+.helper {
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+  width: 0;
+}
