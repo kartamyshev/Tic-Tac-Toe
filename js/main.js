@@ -24,33 +24,26 @@ function drawTable() {
 cells.each(function(){
 
     $(this).on('click', function() {
-        var $self = $(this);
-        var currentText = $(this).text();
-        var row = $(this).parent().index();
-        var cell = $(this).index();
+        var $self = $(this),
+            currentText = $self.text(),
+            row = $self.parent().index(),
+            cell = $self.index();
+
         if (currentText) return;
 
 
-        if (flag) {
-            whenX();
-        } else {
-            whenNil();
-        }
+        flag ? when('x', 1) : when('o', 0);
 
 
-        function whenX() {
-            $self.text('x');
-            matrix[row][cell] = 1;
-        }
-        function whenNil() {
-            $self.text('o');
-            matrix[row][cell] = 0;
+        function when(text, num) {
+            $self.text(text);
+            matrix[row][cell] = num;
         }
 
 
         flag = !flag;
         counter++;
-        $(this).addClass('disabled');
+        $self.addClass('disabled');
 
     });
 
