@@ -1,7 +1,6 @@
-var flag = true,
-    counter = 0;
-
-var cells = $('.field').find('td'),
+var flag = Math.round(Math.random()),
+    counter = 0,
+    cells = $('.field').find('td'),
     cellsCount = cells.length,
     rowLength = Math.sqrt(cellsCount),
     getMinimumVictoryCount = 5,
