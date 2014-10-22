@@ -3,11 +3,11 @@ var flag = Math.round(Math.random()),
     cells = $('.field').find('td'),
     cellsCount = cells.length,
     rowLength = Math.sqrt(cellsCount),
-    getMinimumVictoryCount = 5,
+    minimumVictoryCount = 5,
     matrix = [];
 
 
-
+// pushing to a matrix array default -1 values
 for (var i = 0; i < rowLength; i++) {
     matrix.push([]);
     for (var j = 0; j < rowLength; j++) {
@@ -15,8 +15,22 @@ for (var i = 0; i < rowLength; i++) {
     }
 }
 
-function drawTable() {
-
+// This one will redraw table according to selected option in select
+function redrawTable(elem) {
+    var rows = {
+        now: rowLength,
+        willBe: elem.val(),
+        diff: function() {
+            return this.willBe - this.now;
+        }
+    };
+    console.log(rows.diff());
+    if (rows.diff() === 0) return;
+    else if (rows.diff() > 0) {
+        // add number of rows
+    } else {
+        // remove number of rows
+    }
 }
 
 
@@ -50,5 +64,5 @@ cells.each(function(){
 
 
 $('.field-size').on('change', function() {
-    drawTable();
+    redrawTable($(this));
 });
