@@ -36,7 +36,7 @@ function redrawTable(elem) {
 
 
 function showCurrentProgress() {
-	$('.current strong').text(function(){
+	$('.current__text').text(function(){
 		return flag ? 'x' : 'o';
 	});
 }

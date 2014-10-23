@@ -1,3 +1,6 @@
+html {
+  font-size: 62.5%;
+}
 html,
 body {
   width: 100%;
@@ -7,23 +10,30 @@ body {
   margin: 0;
   background: #ccc;
   text-align: center;
+  font: 1rem Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 .wrapper {
   display: inline-block;
   vertical-align: middle;
-/*text-align left*/
 }
 .wrapper table.field td {
   border: 1px solid #000;
   width: 100px;
   height: 100px;
-  font: 50px monospace;
+  font: 5rem monospace;
   text-transform: lowercase;
   cursor: pointer;
 }
 .wrapper table.field td.disabled {
   cursor: default;
   background: #888;
+}
+.current {
+  font-size: 2rem;
+  line-height: 4rem;
+}
+.current__text {
+  font-size: 3rem;
 }
 .helper {
   display: inline-block;
