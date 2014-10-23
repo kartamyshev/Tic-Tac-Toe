@@ -34,9 +34,19 @@ function redrawTable(elem) {
 }
 
 
+
+function showCurrentProgress() {
+	$('.current strong').text(function(){
+		return flag ? 'x' : 'o';
+	});
+}
+showCurrentProgress();
+
+
 cells.each(function(){
 
     $(this).on('click', function() {
+
         var $self = $(this),
             currentText = $self.text(),
             row = $self.parent().index(),
@@ -57,7 +67,7 @@ cells.each(function(){
         flag = !flag;
         counter++;
         $self.addClass('disabled');
-
+		  showCurrentProgress();
     });
 
 });
