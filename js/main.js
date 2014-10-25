@@ -1,6 +1,7 @@
 var flag = Math.round(Math.random()),
     counter = 0,
-    cells = $('.field').find('td'),
+    $field = $('.field'),
+    cells = $field.find('td'),
     cellsCount = cells.length,
     rowLength = Math.sqrt(cellsCount),
     minimumVictoryCount = 5,
@@ -13,25 +14,6 @@ for (var i = 0; i < rowLength; i++) {
     matrix.push([]);
     for (var j = 0; j < rowLength; j++) {
         matrix[i].push(-1);
-    }
-}
-
-// This one will redraw table according to selected option in select
-function redrawTable(elem) {
-    var rows = {
-        now: rowLength,
-        willBe: elem.val(),
-        diff: function() {
-            return this.willBe - this.now;
-        }
-    };
-
-
-    if (rows.diff() === 0) return;
-    else if (rows.diff() > 0) {
-        // add number of rows
-    } else {
-        // remove number of rows
     }
 }
 
@@ -81,9 +63,27 @@ cells.each(function(){
 });
 
 
+// This one will disable option and redraw table according to selected option in select
+function redrawTable(elem) {
+
+    var setDisabledOption = function () {
+        $options.removeAttr('disabled');
+        $(elem).attr('disabled', true);
+    }();
+
+    var chosen = +$(elem).attr('value');
+
+    if (chosen > rowLength) {
+        for (var i = 0; i < chosen - rowLength; i++) {
+            $field.append('<tr><td></td></tr>');
+        }
+    }
+
+
+
+}
 
 $options.on('click', function() {
-    $options.removeAttr('disabled');
-    $(this).attr('disabled', true);
+    redrawTable(this);
 });
 

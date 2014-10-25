@@ -17,10 +17,10 @@ body {
   vertical-align: middle;
 }
 .wrapper table.field td {
-  border: 1px solid #000;
-  width: 100px;
-  height: 100px;
-  font: 5rem monospace;
+  border: 0.1rem solid #000;
+  width: 8rem;
+  height: 8rem;
+  font: 4rem monospace;
   text-transform: lowercase;
   cursor: pointer;
 }
