@@ -4,7 +4,8 @@ var flag = Math.round(Math.random()),
     cellsCount = cells.length,
     rowLength = Math.sqrt(cellsCount),
     minimumVictoryCount = 5,
-    matrix = [];
+    matrix = [],
+    $options = $('.field-size').find('option');
 
 
 // pushing to a matrix array default -1 values
@@ -24,7 +25,8 @@ function redrawTable(elem) {
             return this.willBe - this.now;
         }
     };
-    console.log(rows.diff());
+
+
     if (rows.diff() === 0) return;
     else if (rows.diff() > 0) {
         // add number of rows
@@ -33,15 +35,17 @@ function redrawTable(elem) {
     }
 }
 
-
-
 function showCurrentProgress() {
 	$('.current__text').text(function(){
 		return flag ? 'x' : 'o';
 	});
 }
-showCurrentProgress();
 
+function checkWinner() {
+    console.log(matrix);
+}
+
+showCurrentProgress();
 
 cells.each(function(){
 
@@ -54,9 +58,7 @@ cells.each(function(){
 
         if (currentText) return;
 
-
         flag ? when('x', 1) : when('o', 0);
-
 
         function when(text, num) {
             $self.text(text);
@@ -66,13 +68,22 @@ cells.each(function(){
 
         flag = !flag;
         counter++;
+
         $self.addClass('disabled');
-		  showCurrentProgress();
+        showCurrentProgress();
+
+        if (counter >= minimumVictoryCount) {
+            checkWinner();
+        }
+
     });
 
 });
 
 
-$('.field-size').on('change', function() {
-    redrawTable($(this));
+
+$options.on('click', function() {
+    $options.removeAttr('disabled');
+    $(this).attr('disabled', true);
 });
+
