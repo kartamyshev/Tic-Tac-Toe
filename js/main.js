@@ -2,20 +2,8 @@ var flag = Math.round(Math.random()),
     counter = 0,
     $field = $('.field'),
     cells = $field.find('td'),
-    cellsCount = cells.length,
-    rowLength = Math.sqrt(cellsCount),
     minimumVictoryCount = 5,
-    matrix = [];
-
-var pushDefaultValuesToMatrix = function () {
-    for (var i = 0; i < rowLength; i++) {
-        matrix.push([]);
-        for (var j = 0; j < rowLength; j++) {
-            matrix[i].push(-1);
-        }
-    }
-}();
-
+    matrix = [[-1, -1, -1], [-1, -1, -1], [-1, -1, -1]];
 
 Array.prototype.allValuesSame = function() {
     for (var i = 0; i < this.length; i++) {
@@ -66,7 +54,7 @@ function checkWinner() {
 
     horizontal();
 //    vertical();
-    diagonal();
+//    diagonal();
 }
 
 cells.each(function(){
@@ -101,5 +89,3 @@ cells.each(function(){
     });
 
 });
-
-
