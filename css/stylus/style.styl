@@ -10,23 +10,29 @@ body
   margin 0
   background #cccccc
   text-align center
-  font 1rem Arial, "Helvetica Neue", Helvetica, sans-serif
+  background: linear-gradient(to bottom, #8a807c, #483c32)
+  font 1rem Monaco, "Helvetica Neue", Helvetica, sans-serif
+  color: #483c32 - #222
 
 .wrapper
   display inline-block
   vertical-align middle
   table.field
+    transform: perspective(450px) rotateX(30deg)
     td
       td-size = 8rem
-      border .1rem solid #000
+      border .1rem solid rgba(255, 255, 255 , .3)
       width td-size
       height td-size
-      font (td-size / 2)rem monospace
+      font-size: (td-size / 2)rem
       text-transform lowercase
       cursor pointer
       &.disabled
         cursor default
-        background #888888
+        background: darken(#8a807c, 10%)
+        opacity: .5
+        /*background: linear-gradient(to bottom,, #483c32)*/
+        /*background #888888*/
 
 .current
   font-size 2rem
