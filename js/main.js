@@ -1,7 +1,8 @@
-var flag = Math.round(Math.random()),
+var $ = function (elem) { return document.querySelector(elem);},
+    $$ = function (elem) { return document.querySelectorAll(elem);},
+    flag = Math.round(Math.random()),
     counter = 0,
-    $field = $('.field'),
-    cells = $field.find('td'),
+    cells = $$('.field td'),
     minimumVictoryCount = 5,
     matrix = [[-1, -1, -1], [-1, -1, -1], [-1, -1, -1]];
 
@@ -14,9 +15,10 @@ Array.prototype.allValuesSame = function() {
 };
 
 function showCurrentProgress() {
-	$('.current__text').text(function(){
-		return flag ? 'x' : 'o';
-	});
+    var text = function() {
+        return flag ? 'x' : 'o';
+    };
+	$('.current__text').textContent = text();
 }
 showCurrentProgress();
 
@@ -31,55 +33,65 @@ function checkWinner() {
         }
     };
 
-//    var vertical = function() {
-//        var arr = [[], [], []];
-//
-//        arr[0][0] = matrix[0][0] === matrix[1][0];
-//        arr[0][1] = matrix[1][0] === matrix[2][0];
-//        arr[0][2] = matrix[0][0] === matrix[2][0];
-//
-//        arr[1][0] = matrix[0][1] === matrix[1][1];
-//        arr[1][1] = matrix[1][1] === matrix[2][1];
-//        arr[1][2] = matrix[0][1] === matrix[2][1];
-//
-//        arr[2][0] = matrix[0][2] === matrix[1][2];
-//        arr[2][1] = matrix[1][2] === matrix[2][2];
-//        arr[2][2] = matrix[0][2] === matrix[2][2];
-//        if (arr[0].allValuesSame() || arr[1].allValuesSame() || arr[2].allValuesSame()) {
-//            winnerReload();
-//        }
-//    };
+    var vertical = function() {
+        var arr = [[], [], []];
 
-    var diagonal = function() {};
+        arr[0][0] = matrix[0][0] === matrix[1][0];
+        arr[0][1] = matrix[1][0] === matrix[2][0];
+        arr[0][2] = matrix[0][0] === matrix[2][0];
+
+        arr[1][0] = matrix[0][1] === matrix[1][1];
+        arr[1][1] = matrix[1][1] === matrix[2][1];
+        arr[1][2] = matrix[0][1] === matrix[2][1];
+
+        arr[2][0] = matrix[0][2] === matrix[1][2];
+        arr[2][1] = matrix[1][2] === matrix[2][2];
+        arr[2][2] = matrix[0][2] === matrix[2][2];
+        if (arr[0].allValuesSame() || arr[1].allValuesSame() || arr[2].allValuesSame()) {
+            winnerReload();
+        }
+    };
+
+    var diagonal = function() {
+        var arr = [[], []];
+        arr[0][0] = matrix[0][0] === matrix[1][1];
+        arr[0][1] = matrix[0][0] === matrix[2][2];
+        arr[0][2] = matrix[1][1] === matrix[2][2];
+
+        arr[1][0] = matrix[0][2] === matrix[1][1];
+        arr[1][1] = matrix[1][1] === matrix[2][0];
+        arr[1][2] = matrix[0][2] === matrix[2][0];
+
+        if (arr[0].allValuesSame() || arr[1].allValuesSame()) {
+            winnerReload();
+        }
+    };
 
     horizontal();
 //    vertical();
 //    diagonal();
 }
 
-cells.each(function(){
+Array.prototype.forEach.call(cells, function(el, i){
+    el.addEventListener('click', function() {
 
-    $(this).on('click', function() {
-
-        var $self = $(this),
-            currentText = $self.text(),
-            row = $self.parent().index(),
-            cell = $self.index();
+        var currentText = el.textContent,
+            row = (i >= 0 && i <= 2) ? 0 : (i >= 3 && i <= 5) ? 1 : 2,
+            cell = (i >= 3 && i <=5) ? i - 3 : (i >= 6 && i <= 8) ? i - 6 : i;
 
         if (currentText) return;
 
         flag ? when('x', 1) : when('o', 0);
 
         function when(text, num) {
-            $self.text(text);
+            el.textContent = text;
             matrix[row][cell] = num;
         }
-
 
         flag = !flag;
         counter++;
 
-        $self.addClass('disabled');
+        el.classList.add('disabled');
         showCurrentProgress();
 
         if (counter >= minimumVictoryCount) {
@@ -87,5 +99,4 @@ cells.each(function(){
         }
 
     });
-
 });
