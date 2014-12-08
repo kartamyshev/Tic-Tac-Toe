@@ -68,8 +68,8 @@ function checkWinner() {
     };
 
     horizontal();
-//    vertical();
-//    diagonal();
+    vertical();
+    diagonal();
 }
 
 Array.prototype.forEach.call(cells, function(el, i){
