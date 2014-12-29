@@ -15,10 +15,9 @@ Array.prototype.allValuesSame = function() {
 };
 
 function showCurrentProgress() {
-    var text = function() {
+	$('.current__text').textContent = function() {
         return flag ? 'x' : 'o';
-    };
-	$('.current__text').textContent = text();
+    }();
 }
 showCurrentProgress();
 
@@ -98,5 +97,5 @@ Array.prototype.forEach.call(cells, function(el, i){
             checkWinner();
         }
 
-    });
+    }, false);
 });
