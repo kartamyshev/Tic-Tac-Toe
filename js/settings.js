@@ -5,9 +5,4 @@ require.config({
 	}
 });
 
-require(['domReady'], function(domReady) {
-	domReady(function () {
-		requirejs(['main']);
-	});
-});
-
+document.addEventListener("DOMContentLoaded", requirejs(['main']), false);

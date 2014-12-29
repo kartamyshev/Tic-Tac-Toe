@@ -1,9 +1,9 @@
 define(['utils'], function (utils) {
 
 	var TitTac = function (holder, countHolder) {
-		this._holder = utils.select(holder);
-		this._countHolder = utils.select(countHolder);
-		this._holderLines = Array.prototype.slice.call( this._holder.children );
+		this._holder = utils.select(holder);                                        // tbody
+		this._countHolder = utils.select(countHolder);                              // .current__text
+		this._holderLines = Array.prototype.slice.call( this._holder.children );    // tr
 
 		this._flag = Math.round(Math.random());
 		this._counter = 0;
@@ -40,7 +40,7 @@ define(['utils'], function (utils) {
 		_setValue: function (el, x, y) {
 			// if we have value in this td
 			if (this._matrix[x][y] !== -1)
-				return
+				return;
 
 			this._matrix[x][y] = this._flag;
 			el.innerHTML = this._flag ? 'x' : 'o';
@@ -52,7 +52,7 @@ define(['utils'], function (utils) {
 		_updateCurrentProgress: function () {
 			this._countHolder.innerHTML = this._flag ? 'x' : 'o';
 		}
-	}
+	};
 
 	return TitTac;
 
