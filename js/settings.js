@@ -1,8 +1,5 @@
 require.config({
-	baseUrl: 'js',
-	paths: {
-		domReady: '../bower_components/requirejs-domready/domReady',
-	}
+	baseUrl: 'js'
 });
 
 document.addEventListener("DOMContentLoaded", requirejs(['main']), false);
