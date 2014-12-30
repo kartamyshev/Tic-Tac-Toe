@@ -1,10 +1,12 @@
 define(function() {
 	return {
-		select: function(selector) {
-			return document.querySelector(selector);
+		select: function(selector, el) {
+			el = el || document;
+			return el.querySelector(selector);
 		},
-		selectAll: function (selector) {
-			document.querySelectorAll(selector);
+		selectAll: function (selector, el) {
+			el = el || document;
+			return el.querySelectorAll(selector);
 		},
 		allValuesSame: function (arr) {
 			for (var i = 0; i < arr.length; i++) {

@@ -1,7 +1,8 @@
 require.config({
 	baseUrl: 'js',
 	paths: {
-		domReady: '../bower_components/requirejs-domready/domReady',
+		// for example
+		// domReady: '../bower_components/requirejs-domready/domReady',
 	}
 });
 
